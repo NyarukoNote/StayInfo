@@ -1,0 +1,249 @@
+.motel-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.motel-address {
+  font-style: italic;
+  color: #666;
+}
+
+.motel-rating {
+  font-weight: bold;
+  color: #f39c12;
+  margin-bottom: 20px;
+}
+
+.motel-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.motel-images img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+}
+
+.motel-description,
+.motel-amenities,
+.motel-room-types,
+.motel-reviews {
+  margin-bottom: 30px;
+}
+
+.motel-amenities ul,
+.motel-room-types ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.motel-amenities li,
+.motel-room-types li {
+  margin-bottom: 10px;
+}
+
+.review {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.motel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.motel-info {
+  flex: 1;
+}
+
+.motel-map {
+  flex: 0 0 600px;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 추가 */
+@media (max-width: 1200px) {
+  .motel-header {
+    flex-direction: column;
+  }
+
+  .motel-map {
+    flex: 1;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.motel-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-bottom: 20px;
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
+  -ms-overflow-style: none; /* IE 및 Edge에서 스크롤바 숨김 */
+}
+
+.motel-images::-webkit-scrollbar {
+  display: none; /* Chrome, Safari에서 스크롤바 숨김 */
+}
+
+.motel-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.motel-links button {
+  margin: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.motel-links img {
+  width: 30px; /* 이미지 크기 조절 */
+  height: auto;
+}
+
+.naver-button {
+  background-color: #03c75a;
+  color: white;
+}
+
+.yeogi-button {
+  background-color: #ff5a5f;
+  color: white;
+}
+
+.motel-links button:hover {
+  opacity: 0.8;
+}
+
+/* 원그래프 크기 조정 */
+.review-stats {
+  width: 100%;
+  margin-bottom: 100px; /* 아래에 여백 추가 */
+}
+
+.review-circle {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 10px; /* 차트와 퍼센트 간 여백 조정 */
+  text-align: center;
+}
+
+.review-percentage {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px; /* 퍼센트 텍스트 위쪽 여백 추가 */
+  margin-bottom: 30px;
+}
+
+.review-percentage p {
+  margin: 5px 0;
+  line-height: 1.5; /* 줄 간격 조정 */
+}
+
+.review-stats canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 숙소 이용 정보 스타일 */
+.motel-accommodation-info {
+  margin-bottom: 30px;
+}
+
+.motel-accommodation-info h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #3498db;
+}
+
+.accommodation-info-category {
+  margin-bottom: 20px;
+}
+
+.accommodation-info-category h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.accommodation-info-category ul {
+  padding-left: 20px;
+}
+
+.accommodation-info-category li {
+  font-size: 16px;
+  color: #666;
+}
+
+.motel-services {
+  margin-top: 30px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.service-tag {
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.motel-pros-cons {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-detail-bar {
+  margin-top: 2rem;
+}
+
+.review-stats-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.review-circle {
+  flex: 1;
+  min-width: 300px;
+}
+
+.review-detail-bar {
+  flex: 2;
+  min-width: 400px;
+}

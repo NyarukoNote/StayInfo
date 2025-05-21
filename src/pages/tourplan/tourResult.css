@@ -1,0 +1,35 @@
+.tour-result-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.itinerary-text {
+  white-space: pre-line;
+  margin-top: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.back-button {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #e6554f;
+}
+
+.map-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}

@@ -1,0 +1,47 @@
+.navbar{
+  height: 50px;
+  background-color: #003580;
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer{
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: 500;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.logoImage {
+  width: 30px; /* 원하는 크기로 조정하세요 */
+  height: auto;
+  margin-right: 10px; /* 로고와 텍스트 사이의 간격 */
+}
+
+.logoContainer,
+.logoContainer:link,
+.logoContainer:visited,
+.logoContainer:hover,
+.logoContainer:active {
+  color: inherit; /* 또는 원하는 색상 */
+  text-decoration: none;
+}

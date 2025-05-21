@@ -1,0 +1,157 @@
+/* tourSelectPage.css */
+
+.tour-select-page {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 20px auto 60px;
+  padding: 0 15px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.3em;
+  color: #333;
+}
+
+h3 {
+  font-weight: 500;
+  margin-bottom: 1.5em;
+  color: #666;
+}
+
+/* 반경 선택 UI */
+.radius-selector {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radius-selector label {
+  font-weight: 600;
+  color: #444;
+}
+
+.radius-selector select {
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.radius-selector select:hover,
+.radius-selector select:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+/* 에러 메시지 */
+.error {
+  color: #d9534f;
+  font-weight: 600;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+/* 관광지 리스트 */
+.tour-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* 관광지 카드 */
+.tour-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tour-card:hover {
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.15);
+}
+
+.tour-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.tour-card h3 {
+  font-size: 1.15rem;
+  margin: 12px 16px 6px;
+  color: #222;
+  flex-grow: 1;
+}
+
+.tour-card p {
+  margin: 0 16px 16px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+  gap: 6px;
+  user-select: none;
+}
+
+.pagination li {
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  color: #444;
+  font-weight: 600;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #e6f0ff;
+  border-color: #0077ff;
+  color: #0077ff;
+}
+
+.pagination li.active {
+  background-color: #0077ff;
+  border-color: #0077ff;
+  color: white;
+  cursor: default;
+}
+
+.pagination li.disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* 로딩 및 메시지 */
+.loading,
+.error,
+.tour-list p,
+.content-container > p {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+}

@@ -1,0 +1,113 @@
+/* 모달 스타일 */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* 배경을 어두운 색으로 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.image-modal-content {
+  width: 100%; /* 전체 화면을 사용 */
+  height: 100%; /* 전체 화면을 사용 */
+  padding: 0; /* 패딩 제거 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image {
+  width: 100%; /* 화면 너비에 맞춰 100% 크기 설정 */
+  height: 100%; /* 화면 높이에 맞춰 100% 크기 설정 */
+  object-fit: cover; /* 이미지를 꽉 차게 확대 */
+  border-radius: 10px;
+  display: block; /* 이미지 크기 조정 */
+  transform: scale(2.5); /* 이미지 크기 강제로 확대 */
+}
+
+/* 슬라이더 스타일 */
+.motel-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+.slide-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer; /* 이미지 클릭 가능하도록 커서 변경 */
+}
+
+.slide-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.custom-dots-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.slick-dots li button:before {
+  font-size: 10px;
+  color: gray;
+  opacity: 0.7;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.custom-prev {
+  left: 10px;
+}
+
+.custom-next {
+  right: 10px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .motel-slider {
+    max-width: 100%;
+  }
+
+  .custom-arrow {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-image {
+    max-width: 95%;
+  }
+}
