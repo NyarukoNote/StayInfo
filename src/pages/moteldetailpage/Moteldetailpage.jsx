@@ -28,24 +28,27 @@ const MotelDetailPage = () => {
         const response = await axios.get(
           `/motel?name=${encodeURIComponent(name)}`
         );
+        console.log(response);
         if (!response.data) throw new Error("해당 모텔을 찾을 수 없습니다.");
-        console.log(response.data);
         setMotel(response.data);
 
         const imageListResponse = await axios.get(
           `/image_list/${encodeURIComponent(name)}`
         );
+
+        console.log(imageListResponse.data);
+
         if (
           Array.isArray(imageListResponse.data.images) &&
           imageListResponse.data.images.length > 0
         ) {
           const imageUrls = imageListResponse.data.images.map(
-            (filename) => `/images/${filename}`
+            (filename) => filename
           );
           setImages(imageUrls);
         } else {
           setImages([
-            `/images/${encodeURIComponent(name)}.jpg`,
+            `/image/${encodeURIComponent(name)}.jpg`,
             "/img/default.png",
           ]);
         }

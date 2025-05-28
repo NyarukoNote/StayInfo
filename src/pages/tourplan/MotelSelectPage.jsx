@@ -44,65 +44,66 @@ const MotelSelectPage = () => {
   const currentMotels = motels.slice(offset, offset + motelsPerPage);
 
   return (
-    <div className="motel-page">
+    <div>
       <Navbar />
       <Header />
+      <div className="motel-page">
+        <h1>여행 계획을 시작해보세요</h1>
+        <h2>1. 숙소를 선택하세요</h2>
 
-      <h1>여행 계획을 시작해보세요</h1>
-      <h2>1. 숙소를 선택하세요</h2>
+        <div className="motel-list">
+          {currentMotels.map((motel) => {
+            const name = motel["업체명"];
+            const formattedName = name.replace(/ /g, "_");
+            const isSelected = selectedMotel?.name === name;
 
-      <div className="motel-list">
-        {currentMotels.map((motel) => {
-          const name = motel["업체명"];
-          const formattedName = name.replace(/ /g, "_");
-          const isSelected = selectedMotel?.name === name;
+            return (
+              <div
+                key={name}
+                className={`motel-item ${isSelected ? "selected" : ""}`}
+                onClick={() => handleSelect(name)}
+              >
+                <img
+                  src={`/image/${encodeURIComponent(formattedName)}_1.jpg`}
+                  alt={name}
+                  referrerPolicy="no-referrer"
+                />
+                <h2>{name}</h2>
+                <p>{motel["주소"]}</p>
+                <p className="select-status">{isSelected ? "✅ 선택됨" : ""}</p>
+              </div>
+            );
+          })}
+        </div>
 
-          return (
-            <div
-              key={name}
-              className={`motel-item ${isSelected ? "selected" : ""}`}
-              onClick={() => handleSelect(name)}
-            >
-              <img
-                src={`/image/${encodeURIComponent(formattedName)}_1.jpg`}
-                alt={name}
-                referrerPolicy="no-referrer"
-              />
-              <h2>{name}</h2>
-              <p>{motel["주소"]}</p>
-              <p className="select-status">{isSelected ? "✅ 선택됨" : ""}</p>
+        <ReactPaginate
+          previousLabel={"이전"}
+          nextLabel={"다음"}
+          breakLabel={"..."}
+          pageCount={Math.ceil(motels.length / motelsPerPage)}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={3}
+          onPageChange={({ selected }) => setCurrentPage(selected)}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
+
+        <div className="selected-box">
+          {selectedMotel && (
+            <div>
+              <strong>선택된 모텔:</strong> {selectedMotel.name}
             </div>
-          );
-        })}
+          )}
+        </div>
+
+        <button
+          className="next-button"
+          onClick={handleNext}
+          disabled={!selectedMotel}
+        >
+          다음 (관광지 선택)
+        </button>
       </div>
-
-      <ReactPaginate
-        previousLabel={"이전"}
-        nextLabel={"다음"}
-        breakLabel={"..."}
-        pageCount={Math.ceil(motels.length / motelsPerPage)}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
-        onPageChange={({ selected }) => setCurrentPage(selected)}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
-
-      <div className="selected-box">
-        {selectedMotel && (
-          <div>
-            <strong>선택된 모텔:</strong> {selectedMotel.name}
-          </div>
-        )}
-      </div>
-
-      <button
-        className="next-button"
-        onClick={handleNext}
-        disabled={!selectedMotel}
-      >
-        다음 (관광지 선택)
-      </button>
     </div>
   );
 };

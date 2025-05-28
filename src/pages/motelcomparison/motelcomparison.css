@@ -47,6 +47,20 @@
   margin: 10px 0;
 }
 
+.selected-motels {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.selected-motel-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .comparison-table {
   margin-top: 20px;
   border: 2px solid #ddd;
@@ -75,19 +89,23 @@
   border-bottom: none;
 }
 
-.selected-motels {
-  background-color: #f8f9fa;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.selected-motel-list {
+.detail-buttons {
+  margin-top: 1rem;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.motel-item.selected {
-  border: 2px solid #007bff;
-  background-color: #e7f1ff;
+.detail-button {
+  padding: 0.5rem 1rem;
+  background-color: #0077cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.detail-button:hover {
+  background-color: #005fa3;
 }

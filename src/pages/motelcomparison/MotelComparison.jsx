@@ -11,12 +11,12 @@ const MotelComparison = () => {
   const [selectedMotels, setSelectedMotels] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMotelDetails, setSelectedMotelDetails] = useState([]);
 
   useEffect(() => {
     const fetchMotelsData = async () => {
       try {
-        const response = await axios.get("/data?fields=업체명,주소,서비스");
-
+        const response = await axios.get("/data?fields=업체명,주소");
         if (!response.data) {
           console.error("No data received");
           return;
@@ -34,6 +34,28 @@ const MotelComparison = () => {
 
     fetchMotelsData();
   }, []);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      if (selectedMotels.length === 2) {
+        try {
+          const detailResponses = await Promise.all(
+            selectedMotels.map((motel) =>
+              axios.get(`/motel?name=${encodeURIComponent(motel["업체명"])}`)
+            )
+          );
+          console.log(detailResponses);
+          setSelectedMotelDetails(detailResponses.map((res) => res.data));
+        } catch (err) {
+          console.error("Failed to fetch motel details", err);
+        }
+      } else {
+        setSelectedMotelDetails([]);
+      }
+    };
+
+    fetchDetails();
+  }, [selectedMotels]);
 
   // 모텔 선택/취소 핸들러
   const handleSelect = (motel) => {
@@ -146,34 +168,70 @@ const MotelComparison = () => {
         </div>
 
         {/* 비교 테이블 */}
-        {selectedMotels.length === 2 && (
+        {selectedMotelDetails.length === 2 && (
           <div className="comparison-table">
             <h2>비교 결과</h2>
             <table>
               <thead>
                 <tr>
                   <th>항목</th>
-                  <th>{selectedMotels[0]["업체명"]}</th>
-                  <th>{selectedMotels[1]["업체명"]}</th>
+                  <th>{selectedMotelDetails[0]["업체명"]}</th>
+                  <th>{selectedMotelDetails[1]["업체명"]}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>주소</td>
-                  <td>{selectedMotels[0]["주소"]}</td>
-                  <td>{selectedMotels[1]["주소"]}</td>
+                  <td>{selectedMotelDetails[0]["주소"]}</td>
+                  <td>{selectedMotelDetails[1]["주소"]}</td>
                 </tr>
                 <tr>
                   <td>서비스</td>
                   <td>
-                    {selectedMotels[0]["서비스"]?.join(", ") || "정보 없음"}
+                    {selectedMotelDetails[0]["서비스"]?.join(", ") ||
+                      "정보 없음"}
                   </td>
                   <td>
-                    {selectedMotels[1]["서비스"]?.join(", ") || "정보 없음"}
+                    {selectedMotelDetails[1]["서비스"]?.join(", ") ||
+                      "정보 없음"}
                   </td>
+                </tr>
+                <tr>
+                  <td>장점</td>
+                  <td>{selectedMotelDetails[0]["장점"] || "정보 없음"}</td>
+                  <td>{selectedMotelDetails[1]["장점"] || "정보 없음"}</td>
+                </tr>
+                <tr>
+                  <td>단점</td>
+                  <td>{selectedMotelDetails[0]["단점"] || "정보 없음"}</td>
+                  <td>{selectedMotelDetails[1]["단점"] || "정보 없음"}</td>
                 </tr>
               </tbody>
             </table>
+
+            {/* 상세 페이지 이동 버튼 */}
+            <div className="detail-buttons">
+              <a
+                href={`/graduation-front_end#/motel/${encodeURIComponent(
+                  selectedMotelDetails[0]["업체명"]
+                )}`}
+                className="detail-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedMotelDetails[0]["업체명"]} 상세보기
+              </a>
+              <a
+                href={`/graduation-front_end#/motel/${encodeURIComponent(
+                  selectedMotelDetails[1]["업체명"]
+                )}`}
+                className="detail-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedMotelDetails[1]["업체명"]} 상세보기
+              </a>
+            </div>
           </div>
         )}
       </div>

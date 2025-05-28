@@ -94,116 +94,118 @@ const TourPlan = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <Navbar />
       <Header />
-      <h1>3. 여행 계획 확인 및 전송</h1>
+      <div style={{ padding: "20px" }}>
+        <h1>3. 여행 계획 확인 및 전송</h1>
 
-      <h2>선택한 모텔</h2>
-      {motel ? (
+        <h2>선택한 모텔</h2>
+        {motel ? (
+          <div>
+            <p>
+              <strong>{motel.name}</strong>
+            </p>
+          </div>
+        ) : (
+          <p>모텔 정보가 없습니다.</p>
+        )}
+
+        <h2>선택한 관광지 목록</h2>
+        {selectedTours.length > 0 ? (
+          <ul>
+            {selectedTours.map((tour, index) => (
+              <li key={tour.id || index}>{tour.title}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>선택된 관광지가 없습니다.</p>
+        )}
+
+        <KakaoMapSearch
+          onPlaceSelect={(place) => {
+            const alreadyExists = selectedTours.some((p) => p.id === place.id);
+            if (!alreadyExists) {
+              setSelectedTours((prev) => [...prev, place]);
+            } else {
+              alert("이미 추가된 관광지입니다.");
+            }
+          }}
+        />
+
+        <h2>여행 일정 입력</h2>
         <div>
-          <p>
-            <strong>{motel.name}</strong>
-          </p>
+          <label>
+            여행 시작 날짜:{" "}
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              disabled={loading}
+            />
+          </label>
         </div>
-      ) : (
-        <p>모텔 정보가 없습니다.</p>
-      )}
 
-      <h2>선택한 관광지 목록</h2>
-      {selectedTours.length > 0 ? (
-        <ul>
-          {selectedTours.map((tour, index) => (
-            <li key={tour.id || index}>{tour.title}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>선택된 관광지가 없습니다.</p>
-      )}
-
-      <KakaoMapSearch
-        onPlaceSelect={(place) => {
-          const alreadyExists = selectedTours.some((p) => p.id === place.id);
-          if (!alreadyExists) {
-            setSelectedTours((prev) => [...prev, place]);
-          } else {
-            alert("이미 추가된 관광지입니다.");
-          }
-        }}
-      />
-
-      <h2>여행 일정 입력</h2>
-      <div>
-        <label>
-          여행 시작 날짜:{" "}
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            disabled={loading}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          여행 종료 날짜:{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            disabled={loading}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          여행 시작 시간:{" "}
-          <input
-            type="time"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            disabled={loading}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          집에 돌아가는 시간:{" "}
-          <input
-            type="time"
-            value={returnTime}
-            onChange={(e) => setReturnTime(e.target.value)}
-            disabled={loading}
-          />
-        </label>
-      </div>
-
-      <button
-        onClick={handleSubmit}
-        style={{ marginTop: "20px" }}
-        disabled={loading}
-      >
-        여행 계획 서버로 전송
-      </button>
-
-      {/* 로딩 오버레이 */}
-      {loading && (
-        <div className="loading-overlay">
-          <div className="spinner"></div>
-          <div>여행 계획 생성 중입니다...</div>
+        <div>
+          <label>
+            여행 종료 날짜:{" "}
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              disabled={loading}
+            />
+          </label>
         </div>
-      )}
 
-      {/* 생성된 여행 계획 표시 (결과 페이지로 이동 후 안 보임) */}
-      {itineraryText && !loading && (
-        <div style={{ marginTop: "40px", whiteSpace: "pre-line" }}>
-          <h2>🗓️ 생성된 여행 계획</h2>
-          <p>{itineraryText}</p>
+        <div>
+          <label>
+            여행 시작 시간:{" "}
+            <input
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              disabled={loading}
+            />
+          </label>
         </div>
-      )}
+
+        <div>
+          <label>
+            집에 돌아가는 시간:{" "}
+            <input
+              type="time"
+              value={returnTime}
+              onChange={(e) => setReturnTime(e.target.value)}
+              disabled={loading}
+            />
+          </label>
+        </div>
+
+        <button
+          onClick={handleSubmit}
+          style={{ marginTop: "20px" }}
+          disabled={loading}
+        >
+          여행 계획 서버로 전송
+        </button>
+
+        {/* 로딩 오버레이 */}
+        {loading && (
+          <div className="loading-overlay">
+            <div className="spinner"></div>
+            <div>여행 계획 생성 중입니다...</div>
+          </div>
+        )}
+
+        {/* 생성된 여행 계획 표시 (결과 페이지로 이동 후 안 보임) */}
+        {itineraryText && !loading && (
+          <div style={{ marginTop: "40px", whiteSpace: "pre-line" }}>
+            <h2>🗓️ 생성된 여행 계획</h2>
+            <p>{itineraryText}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

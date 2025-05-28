@@ -14,14 +14,13 @@ const Header = ({ activeItem }) => {
           {/* 메뉴 리스트 */}
           <div className="headerList">
             {/* 모텔 목록 (드롭다운) */}
-            <div
+            <Link
+              to="/motel"
               className={`headerListItem motelMenu ${
                 activeItem === "stays" || activeItem === "stays-map"
                   ? "active"
                   : ""
               }`}
-              onMouseEnter={() => setMotelDropdown(true)}
-              onMouseLeave={() => setMotelDropdown(false)}
             >
               <img
                 src={`${process.env.PUBLIC_URL}/icon/icon_list.svg`}
@@ -29,17 +28,7 @@ const Header = ({ activeItem }) => {
                 alt="list"
               />
               <span>모텔 목록</span>
-              {motelDropdown && (
-                <div className="motelDropdown">
-                  <Link to="/motel" className="dropdownItem">
-                    이름/주소로 검색
-                  </Link>
-                  <Link to="/motelmap" className="dropdownItem">
-                    지도로 검색
-                  </Link>
-                </div>
-              )}
-            </div>
+            </Link>
 
             <Link
               to="/motelcomparison"
@@ -87,10 +76,7 @@ const Header = ({ activeItem }) => {
               {tourDropdown && (
                 <div className="tourDropdown">
                   <Link to="/tourinfo" className="dropdownItem">
-                    이름으로 검색
-                  </Link>
-                  <Link to="/tourinfo/filter" className="dropdownItem">
-                    지역 및 분류로 검색
+                    관광정보 검색
                   </Link>
                   <Link
                     to="/plan/motel"

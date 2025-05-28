@@ -48,7 +48,11 @@ const TourSelectPage = () => {
 
       try {
         const url = `https://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=${API_KEY}&mapX=${x}&mapY=${y}&radius=${radius}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
+        // 디버깅 시작
+        console.log("📡 API 호출 준비 중:", { x, y, radius });
         const res = await axios.get(url);
+        console.log("📦 응답 받은 데이터:", res.data);
+        // 디버깅 끝
 
         let items = res.data?.response?.body?.items?.item || [];
         // 숙박(contenttypeid 32) 제외
@@ -152,7 +156,7 @@ const TourSelectPage = () => {
                     onClick={() => toggleSelectPlace(place)}
                   >
                     <img
-                      src={place.firstimage || "/img/default.png"}
+                      src={place.firstimage || "/image/default.png"}
                       alt={place.title}
                       className="tour-image"
                     />

@@ -81,25 +81,27 @@ const TourResult = () => {
   const routes = extractRoutes();
 
   return (
-    <div className="tour-result-container">
+    <div>
       <Navbar />
       <Header />
-      <h1>4. 생성된 여행 계획 결과</h1>
+      <div className="tour-result-container">
+        <h1>4. 생성된 여행 계획 결과</h1>
 
-      {routes.map((route, idx) => (
-        <div key={idx}>
-          <h3>
-            {idx + 1}. {route.from.name} → {route.to.name}
-          </h3>
-          <KakaoMapRouteView from={route.from} to={route.to} />
-        </div>
-      ))}
+        {routes.map((route, idx) => (
+          <div key={idx}>
+            <h3>
+              {idx + 1}. {route.from.name} → {route.to.name}
+            </h3>
+            <KakaoMapRouteView from={route.from} to={route.to} />
+          </div>
+        ))}
 
-      <div className="itinerary-text">{itinerary}</div>
+        <div className="itinerary-text">{itinerary}</div>
 
-      <button className="back-button" onClick={() => navigate(-1)}>
-        이전으로 돌아가기
-      </button>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          이전으로 돌아가기
+        </button>
+      </div>
     </div>
   );
 };

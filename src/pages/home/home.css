@@ -26,6 +26,10 @@
   width: 50%;
 }
 
+.hero-overlay h1 {
+  color: white;
+}
+
 /* 검색 입력 필드 스타일 */
 .search-box {
   display: flex;

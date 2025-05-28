@@ -73,16 +73,19 @@
 
 .tourDropdown {
   position: absolute;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  top: 100%; /* 아래쪽으로 배치 */
-  background-color: #003580; /* 배경을 파란색으로 변경 */
+  background: white;
+  border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 180px;
+  min-width: 150px;
+  padding: 10px 0;
   display: none;
   flex-direction: column;
-  padding: 10px 0;
+  z-index: 10;
 }
 
 .tourMenu:hover .tourDropdown,
@@ -112,18 +115,6 @@
 .tourMenu {
   position: relative;
   cursor: pointer;
-}
-
-.motelDropdown,
-.tourDropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border: 1px solid #ddd;
-  z-index: 10;
-  border-radius: 4px;
-  min-width: 150px;
 }
 
 .dropdownItem {

@@ -77,7 +77,32 @@ const AIChatbot = () => {
               <span className="sender">
                 {msg.role === "user" ? "👤 You" : "🤖 AI"}
               </span>
-              <p className="message-content">{msg.content}</p>
+              <div className="message-content">
+                {msg.role === "assistant" ? (
+                  msg.content.split("\n").map((line, i) => {
+                    if (line.startsWith("링크: ")) {
+                      const relativePath = line.replace("링크: ", "").trim();
+                      const url = `/graduation-front_end#${relativePath}`;
+                      return (
+                        <div key={i}>
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-button"
+                          >
+                            숙소 페이지 새 탭으로 열기
+                          </a>
+                        </div>
+                      );
+                    } else {
+                      return <div key={i}>{line}</div>;
+                    }
+                  })
+                ) : (
+                  <p>{msg.content}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>
